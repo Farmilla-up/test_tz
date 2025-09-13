@@ -9,6 +9,26 @@ from .serializer import AddItemSerializer
 
 
 class AddItemView(GenericAPIView):
+    """
+        Добавляет товар в заказ.
+
+        POST-параметры:
+            order_id (URL): ID заказа
+            product_id (JSON): ID товара
+            quantity (JSON): количество
+
+        Логика:
+            - Если товара нет — 404
+            - Если недостаточно на складе — 400
+            - Если товар уже в заказе — увеличивает количество
+            - Иначе создаёт новую позицию
+            - Списывает товар со склада
+
+        Ответы:
+            200 — успех
+            400 — ошибка (недостаточно товара или другая)
+            404 — заказ или товар не найден
+        """
     serializer_class = AddItemSerializer
     permission_classes = [AllowAny]
 
