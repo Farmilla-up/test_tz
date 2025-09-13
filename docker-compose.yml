@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  web:
+    build: .
+
+    command: sh -c "python manage.py migrate && python seed.py && python manage.py runserver 0.0.0.0:8002"
+
+
+    volumes:
+      - .:/app
+      - sqlite_data:/app/data
+
+    environment:
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+
+    container_name: Django_web
+    restart: unless-stopped
+
+    networks:
+      - backend
+
+    ports:
+      - "8002:8002"
+
+
+
+
+volumes:
+  sqlite_data:
+
+networks:
+  backend :
+
+
+

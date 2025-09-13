@@ -1,0 +1,15 @@
+media/
+celerybeat-schedule
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.env
+venv/
+.idea/
+.vscc ode/
+.git/
+.DS_Store
+*.log
