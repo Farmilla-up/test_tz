@@ -10,7 +10,7 @@ from .serializer import AddItemSerializer
 
 class AddItemView(GenericAPIView):
     """
-        Добавляет товар в заказ.
+        Добавляет товар в заказ, при помощи транзакции (чтобы избежать гонки)
 
         POST-параметры:
             order_id (URL): ID заказа
